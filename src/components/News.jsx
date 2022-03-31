@@ -1,29 +1,80 @@
 import React, { Component, useEffect } from 'react'
 import NewsItem from './NewsItem'
+import axios from 'axios';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
 export class News extends Component {
   
     
     constructor(){
         super();
+
+        
         let articles ={}
         this.state = {
           articles:this.articles,
-          loading:true
+          loading:true,
+          page:1,
+          totalArticles:0,
+          prevDisabled:false,
+          nextDisabled:false
         }  
     }
    async componentDidMount(){
-   let url = "https://newsapi.org/v2/everything?q=india&page=3&apiKey=4c804de93f7a4cf294eb50d10cddcfb7";
-
-   let data =await fetch(url)
-   let json = await data.json();
-   let arti = json.articles;
-   this.setState({articles:arti,loading:true})
-    
+     axios.get(`https://newsapi.org/v2/everything?q=world&${this.state.page}&pageSize=20&apiKey=4c804de93f7a4cf294eb50d10cddcfb7`)
+     .then((response)=>{
+       let arti = response.data.articles;
+       this.setState({articles:arti,loading:false,totalArticles:response.data.totalResults})
+       
+     }
+     ).catch((error)=>{console.log(error);})
+  
 
    
     }
-    
+
+    handlePrevClick=async()=>{
+      console.log("prev");
+
+      this.setState({
+        page:this.state.page -1
+      })
+      axios.get(`https://newsapi.org/v2/everything?q=world&page=${this.state.page}&pageSize=20&       pageSize=20&apiKey=4c804de93f7a4cf294eb50d10cddcfb7`)
+     .then((response)=>{
+       let arti = response.data.articles;
+       this.setState({articles:arti,loading:false,totalArticles:response.data.totalResults})
+       
+     }
+     ).catch((error)=>{console.log(error);})
+     window.scrollTo(0, 0);  
+
+
+    }
+    handlenextClick=async()=>{
+      console.log("next");
+
+      if (this.state.page+1>Math.ceil(this.state.totalArticles/20)) {
+        this.setState({
+          nextDisabled:true
+        })
+      }
+        
+      else{
+      this.setState({
+        page:this.state.page + 1
+      })
+
+      axios.get(`https://newsapi.org/v2/everything?q=world&page=${this.state.page}&pageSize=20&apiKey=4c804de93f7a4cf294eb50d10cddcfb7`)
+     .then((response)=>{
+       let arti = response.data.articles;
+       this.setState({articles:arti,loading:false,totalArticles:response.data.totalResults})
+       
+     }
+     ).catch((error)=>{console.log(error);})
+     window.scrollTo(0, 0);  
+
+    }}
 
   render() {
     
@@ -34,12 +85,22 @@ export class News extends Component {
         </div>
       <div className='news_container'>
         {
+          
+            this.state.articles ? this.state.articles.map((article,index) => (<NewsItem article={article} key={index}/>)):""
+          
 
-         this.state.articles ? this.state.articles.map(article => (<NewsItem article={article}/>)):""
+         
         }  
       
       
       </div>
+        <div className="ctnr prev-nxt">
+      <button disabled={this.state.page<=1} type="button" className="btn btn-dark" onClick={this.handlePrevClick}> &larr; Previous</button>
+      <button type="button" disabled={this.state.nextDisabled} className="btn btn-dark" onClick={this.handlenextClick}>Next</button>
+     
+        </div>
+      
+          
       </>
     )
   }
