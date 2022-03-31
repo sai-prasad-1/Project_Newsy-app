@@ -12,10 +12,9 @@ import Auth from './components/Auth';
 export default class App extends Component {
   
   render() {
-    // const authi = firebase.auth();
     return (
       <div>
-        {/* <Auth/> */}
+
         <Navbar/>
         <News/>
       </div>
