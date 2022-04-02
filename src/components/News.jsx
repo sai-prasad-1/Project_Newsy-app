@@ -1,9 +1,7 @@
 import React, { Component, useEffect } from 'react'
 import NewsItem from './NewsItem'
 import axios from 'axios';
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
-import { Button } from '@mui/material';
+
 
 export class News extends Component {
   
@@ -96,9 +94,9 @@ export class News extends Component {
       
       </div>
         <div className="ctnr prev-nxt">
-        {this.state.page<=1?<Button variant="outlined" > &larr; Previous</Button>:<Button variant="contained"  onClick={this.handlePrevClick}> &larr; Previous</Button>} 
+        {this.state.page<=1?<button variant="outlined" > &larr; Previous</button>:<button variant="contained"  onClick={this.handlePrevClick}> &larr; Previous</button>} 
      
-      <Button variant="contained" disabled={this.state.nextDisabled} c onClick={this.handlenextClick}>Next &rarr;</Button>
+      <button variant="contained" disabled={this.state.nextDisabled} c onClick={this.handlenextClick}>Next &rarr;</button>
      
         </div>
       
