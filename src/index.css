@@ -1,3 +1,6 @@
+
+
+
 .news_heading{
   display: flex;
   align-items: center;
@@ -79,3 +82,11 @@
   justify-content: space-between;
   margin: 1rem 3rem 1rem 3rem;
 }
+
+
+
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

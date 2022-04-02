@@ -3,6 +3,7 @@ import NewsItem from './NewsItem'
 import axios from 'axios';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
+import { Button } from '@mui/material';
 
 export class News extends Component {
   
@@ -95,8 +96,9 @@ export class News extends Component {
       
       </div>
         <div className="ctnr prev-nxt">
-      <button disabled={this.state.page<=1} type="button" className="btn btn-dark" onClick={this.handlePrevClick}> &larr; Previous</button>
-      <button type="button" disabled={this.state.nextDisabled} className="btn btn-dark" onClick={this.handlenextClick}>Next</button>
+        {this.state.page<=1?<Button variant="outlined" > &larr; Previous</Button>:<Button variant="contained"  onClick={this.handlePrevClick}> &larr; Previous</Button>} 
+     
+      <Button variant="contained" disabled={this.state.nextDisabled} c onClick={this.handlenextClick}>Next &rarr;</Button>
      
         </div>
       
