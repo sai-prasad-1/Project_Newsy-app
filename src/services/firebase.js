@@ -20,6 +20,8 @@ initializeApp({
 
 export const auth = getAuth();
 const provider = new GoogleAuthProvider();
+
+
 export const signInWithGoogle = () => {
   signInWithPopup(auth,provider)
   .then((result) => {

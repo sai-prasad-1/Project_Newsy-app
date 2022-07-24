@@ -11,7 +11,7 @@ const Error404 = () => {
     console.log(width);
   return (
     
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div className="flex flex-col items-center justify-center h-screen  ">
         {width>=700?
         <img src={normalImage} className="w-[45%]" />:
         <img src={mobileImage} className="w-[105%]" />}

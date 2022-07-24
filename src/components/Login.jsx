@@ -8,6 +8,7 @@ import {
 } from "react-icons/ai";
 import { signInWithGoogle } from "../services/firebase";
 import { useNavigate } from "react-router-dom";
+import { Alert } from "bootstrap";
 
 function SignIn() {
   const passwordRef =useRef();
@@ -35,6 +36,7 @@ function handleSubmit(){
   emailRef.current.value=''
   passwordRef.current.value=''
   passwordConfirmRef.current.value=''}
+ 
   else{
     alert("password not match")
   }

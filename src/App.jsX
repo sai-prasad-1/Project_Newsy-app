@@ -3,6 +3,7 @@ import Login from './components/Login'
 import Navbar from './components/Navbar'
 import News from "./components/News"
 import { AuthProvider } from './context/AuthContext'
+import { ToastContainer, toast } from 'react-toastify';
 import { BrowserRouter,Routes,Route } from 'react-router-dom'
 import Error404 from './components/Error404'
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
           }/>
       </Routes>
       </BrowserRouter>
+      <ToastContainer />
       </AuthProvider>
 
         

@@ -25,11 +25,9 @@ export default function Navbar() {
   function signOut() {
     SignOut()
     navigate("/")
-
-    
   }
 
-  console.log(currentUser.displayName)
+  // console.log(currentUser.displayName)
 
 
 
@@ -97,7 +95,7 @@ export default function Navbar() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src={currentUser.photoURL?currentUser.photoURL:avatar}
+                        src={currentUser?currentUser.photoURL:avatar}
                         alt=""
                       />
                     </Menu.Button>
@@ -118,7 +116,7 @@ export default function Navbar() {
                             href="#"
                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                           >
-                            {currentUser.displayName?currentUser.displayName:"User"}
+                            {currentUser?currentUser.displayName:"User"}
                             
                           </a>
                         )}
