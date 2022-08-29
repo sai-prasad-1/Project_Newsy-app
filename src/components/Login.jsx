@@ -8,7 +8,7 @@ import {
 } from "react-icons/ai";
 import { signInWithGoogle } from "../services/firebase";
 import { useNavigate } from "react-router-dom";
-import { Alert } from "bootstrap";
+import img from "../assets/logo.png";
 
 function SignIn() {
   const passwordRef =useRef();
@@ -23,7 +23,7 @@ if(currentUser){
 }
 else{
   navigate("/")
-}},[currentUser])
+}},[currentUser,navigate])
 
 
 
@@ -44,12 +44,13 @@ function handleSubmit(){
   return (
     <>
       
-          <div>
+          <div className="flex flex-col justify-center items-center">
             <h2 className="mt-6 text-center md:text-3xl text-xl font-extrabold text-gray-900">
               Sign Up to your account
             </h2>
+            <img src={img} alt="Newsy" className="w-[150px]"/>
           </div>
-          <div className="h-[50%] bg-white rounded-md w-[90%] md:w-[380px] p-6 shadow-lg">
+          <div className="h-[50%] bg-white rounded-md w-[90%] md:w-[380px] p-6 pt-1 shadow-lg">
            
             <div className="mt-8 space-y-6" >
               <div className="rounded-md shadow-sm -space-y-px">
@@ -109,7 +110,7 @@ function handleSubmit(){
               <div className="flex items-center justify-between">
                 <div className="text-sm">
                   <a
-                    href="#"
+                    href="/"
                     className="font-medium text-indigo-600 hover:text-indigo-500"
                   >
                     Forgot your password?
@@ -163,7 +164,7 @@ function handleSubmit(){
             </div>
             <div className="text-sm flex justify-center items-center">
                   <a
-                    href="#"
+                    href="/"
                     className="font-medium text-indigo-600 hover:text-indigo-500"
                   >
                      <span className="text-black">have an account?</span> SignUp

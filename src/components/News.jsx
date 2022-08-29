@@ -1,6 +1,8 @@
 import React, { useState,useEffect } from 'react'
 import NewsItem from './NewsItem'
 import axios from 'axios';
+import { Auth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -9,7 +11,15 @@ const News = () => {
   const[TotalArticles,setTotalArticle]=useState()
   const[page,setPage]=useState(1)
   const[nextDisabled,setNextDisaabled]=useState(false)
+  const {currentUser}=Auth();
+  const navigate = useNavigate();
   useEffect(()=>{
+    if (!currentUser) {
+      navigate("/")
+     
+      
+    }
+    
   axios.get("https://newsapi.org/v2/everything?q=russia&apiKey=c575a485fdff451db3fd6b58b955eb4a")
      .then((response)=>{
        let arti = response.data.articles;
@@ -17,7 +27,7 @@ const News = () => {
       setPage(page+1)
 setArticle(arti)       
      }
-     )},[])
+     )})
      const handlePrevClick=async()=>{
             console.log("prev");
 
